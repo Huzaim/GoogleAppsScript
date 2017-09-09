@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <style>
+    .branding-below {
+      bottom: 20px;
+      top: 0;
+      padding-left:30%;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar branding-below">
+      <form>
+        <div class="block" id="button-bar">
+          <button class="blue" id="load-DataToMaster">Start Executing Script</button>          
+        </div>
+        <div id="output" class="block"></div>
+      </form>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+    </script>
+    <script>
+  
+   function onSuccess(numUnread) {
+        var div = document.getElementById('output');
+        div.innerHTML = numUnread;            
+         $('#load-DataToMaster').remove();
+      }
+    
+      $(function() {
+        $('#load-DataToMaster').click(runTranslation);
+          });
+          
+      function runTranslation() {       
+        google.script.run.withSuccessHandler(onSuccess).LoadScript();
+        this.disabled = true;      
+      }
+            
+     </script>
+  </body>
+</html>
